@@ -61,6 +61,10 @@ class Blinky final {
   pw::Status Blink(uint32_t blink_count, uint32_t interval_ms)
       PW_LOCKS_EXCLUDED(lock_);
 
+  /// Blink LED twice.
+  pw::Status BlinkTwice()
+      PW_LOCKS_EXCLUDED(lock_);
+
   /// Fades the LED on and off continuously.
   ///
   /// @param  interval_ms   The duration of a fade cycle, in milliseconds.

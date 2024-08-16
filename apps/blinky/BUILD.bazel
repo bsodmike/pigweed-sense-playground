@@ -25,6 +25,7 @@ cc_binary(
     deps = [
         "//modules/blinky:service",
         "//modules/board:service",
+        "//modules/morse_code:service",
         "//system:worker",
         "//system",
         "@pigweed//pw_log",
