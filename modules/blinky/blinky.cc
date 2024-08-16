@@ -116,6 +116,59 @@ pw::Status Blinky::Blink(uint32_t blink_count, uint32_t interval_ms) {
   return OkStatus();
 }
 
+pw::Status Blinky::BlinkTwice() {
+  uint32_t num_toggles = 4;
+  uint32_t interval_ms = 1000;
+
+  PW_LOG_INFO(
+      "Blinking %u times at a %ums interval", num_toggles / 2, interval_ms);
+  // pw::chrono::SystemClock::duration interval =
+  //     pw::chrono::SystemClock::for_at_least(
+  //         std::chrono::milliseconds(interval_ms));
+  // timer_.Cancel();
+  // {
+  //   std::lock_guard lock(lock_);
+  //   monochrome_led_->TurnOff();
+  //   num_toggles_ = num_toggles;
+  //   interval_ = interval;
+  // }
+  // return ScheduleToggle();
+
+  // Error when using code in the docs:
+  // Ref: https://pigweed.dev/docs/showcases/sense/tutorial/host_sim.html#create-a-blinktwice-rpc-method
+  //   
+  //   Use --sandbox_debug to see verbose messages from the sandbox and retain the sandbox build root for debugging
+  // modules/blinky/blinky.cc:128:10: error: no member named 'Cancel' in 'sense::AsyncTimer'
+  //   128 |   timer_.Cancel();
+  //       |   ~~~~~~ ^
+  // modules/blinky/blinky.cc:132:5: error: use of undeclared identifier 'num_toggles_'; did you mean 'num_toggles'?
+  //   132 |     num_toggles_ = num_toggles;
+  //       |     ^~~~~~~~~~~~
+  //       |     num_toggles
+  // modules/blinky/blinky.cc:120:12: note: 'num_toggles' declared here
+  //   120 |   uint32_t num_toggles = 4;
+  //       |            ^
+  // modules/blinky/blinky.cc:132:18: error: explicitly assigning value of variable of type 'uint32_t' (aka 'unsigned int') to itself [-Werror,-Wself-assign]
+  //   132 |     num_toggles_ = num_toggles;
+  //       |     ~~~~~~~~~~~~ ^ ~~~~~~~~~~~
+  // modules/blinky/blinky.cc:133:5: error: use of undeclared identifier 'interval_'; did you mean 'interval'?
+  //   133 |     interval_ = interval;
+  //       |     ^~~~~~~~~
+  //       |     interval
+  // modules/blinky/blinky.cc:125:37: note: 'interval' declared here
+  //   125 |   pw::chrono::SystemClock::duration interval =
+  //       |                                     ^
+  // modules/blinky/blinky.cc:133:15: error: explicitly assigning value of variable of type 'pw::chrono::SystemClock::duration' (aka 'duration<long long, ratio<1, ((TickType_t)1000)>>') to itself [-Werror,-Wself-assign-overloaded]
+  //   133 |     interval_ = interval;
+  //       |     ~~~~~~~~~ ^ ~~~~~~~~
+  // modules/blinky/blinky.cc:135:10: error: use of undeclared identifier 'ScheduleToggle'
+  //   135 |   return ScheduleToggle();
+  //       |          ^    
+
+  // FIXME just to get this to compile.
+  return OkStatus();
+}
+
 void Blinky::Pulse(uint32_t interval_ms) {
   blink_task_.Deregister();
   PW_LOG_INFO("Pulsing forever at a %ums interval", interval_ms);

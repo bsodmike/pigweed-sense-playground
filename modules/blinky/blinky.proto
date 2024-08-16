@@ -39,6 +39,8 @@ service Blinky {
 
   // Returns true or false if LED blinking is idle.
   rpc IsIdle(pw.protobuf.Empty) returns (BlinkIdleResponse);
+  
+  rpc BlinkTwice(BlinkTwiceRequest) returns (pw.protobuf.Empty);
 }
 
 message SetLedRequest {
@@ -48,6 +50,8 @@ message SetLedRequest {
 message BlinkIdleResponse {
   bool is_idle = 1;
 }
+
+message BlinkTwiceRequest {}
 
 message BlinkRequest {
   // The interval at which to blink or pulse the LED, in milliseconds.

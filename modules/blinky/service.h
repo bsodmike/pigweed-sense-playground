@@ -34,6 +34,8 @@ class BlinkyService final
 
   pw::Status Blink(const blinky_BlinkRequest& request, pw_protobuf_Empty&);
 
+  pw::Status BlinkTwice(const blinky_BlinkTwiceRequest&, pw_protobuf_Empty&);
+
   pw::Status Pulse(const blinky_CycleRequest& request, pw_protobuf_Empty&);
 
   pw::Status SetRgb(const blinky_RgbRequest& request, pw_protobuf_Empty&);

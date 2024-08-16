@@ -54,6 +54,11 @@ pw::Status BlinkyService::Blink(const blinky_BlinkRequest& request,
   return blinky_.Blink(blink_count, interval_ms);
 }
 
+pw::Status BlinkyService::BlinkTwice(const blinky_BlinkTwiceRequest&,
+                                     pw_protobuf_Empty&) {
+  return blinky_.BlinkTwice();
+}
+
 pw::Status BlinkyService::Pulse(const blinky_CycleRequest& request,
                                 pw_protobuf_Empty&) {
   uint32_t interval_ms = request.interval_ms == 0 ? 1000 : request.interval_ms;

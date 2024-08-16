@@ -14,6 +14,7 @@
 #define PW_LOG_MODULE_NAME "MAIN"
 
 #include "modules/blinky/service.h"
+#include "modules/morse_code/service.h"
 #include "modules/board/service.h"
 #include "pw_log/log.h"
 #include "pw_system/system.h"
@@ -37,6 +38,10 @@ int main() {
                       monochrome_led,
                       polychrome_led);
   rpc_server.RegisterService(blinky_service);
+
+  static sense::MorseCodeService morse_code_service;
+  morse_code_service.Init(worker,   sense::Encoder::OutputFunction());
+  rpc_server.RegisterService(morse_code_service);
 
   PW_LOG_INFO("Started blinky app; waiting for RPCs...");
   sense::system::Start();
