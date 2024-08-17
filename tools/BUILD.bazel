@@ -13,6 +13,7 @@
 # the License.
 
 load("@rules_python//python:defs.bzl", "py_binary", "py_library")
+load("@rules_rust//rust:defs.bzl", "rust_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -71,4 +72,10 @@ py_binary(
         ":sense_lib",
         "@pigweed//pw_cli/py:pw_cli",
     ],
+)
+
+
+rust_library(
+    name = "lib",
+    srcs = ["lib.rs"],
 )

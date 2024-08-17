@@ -24,6 +24,7 @@ bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "pw_toolchain")
 bazel_dep(name = "rules_cc")
 bazel_dep(name = "rules_python", version = "0.34.0")
+bazel_dep(name = "rules_rust", version = "0.45.1")
 
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 
